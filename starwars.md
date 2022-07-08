@@ -44,9 +44,9 @@ ggplot(starwars,
        aes(x = height, y = mass, color = gender, size = birth_year)) +
   geom_point(color = "pink") +
   labs(
-    title = "Star War Characters Height x Mass Relationship by Birth Year",
+    title = "Star War Characters Height x Weight Relationship by Birth Year",
     x = "Height(cm)", 
-    y = "Mass(kg)",
+    y = "Weight(kg)",
     size = "Birth Year"
     )
 ```
@@ -65,16 +65,57 @@ or remove the `eval` option altogether since it’s set to `TRUE` by
 default.)
 
 ``` r
-ggplot(starwars, aes(___)) +
-  geom___
+ggplot(starwars, aes(y = hair_color)) +
+  geom_bar()
 ```
+
+![](starwars_files/figure-gfm/barplot-1.png)<!-- -->
 
 ### Pick a single numerical variable and make a histogram of it.
 
 (This time no starter code is provided, you’re on your own!)
 
+``` r
+ggplot(starwars, aes(x = height)) +
+  geom_histogram(binwidth = 20)
+```
+
+    ## Warning: Removed 6 rows containing non-finite values (stat_bin).
+
+![](starwars_files/figure-gfm/histogram-1.png)<!-- -->
+
 ### Pick a numerical variable and a categorical variable and make a visualisation (you pick the type!) to visualise the relationship between the two variables. Along with your code and output, provide an interpretation of the visualisation.
+
+``` r
+ggplot(starwars, aes(x = height,
+                     fill = sex)) + 
+  geom_histogram(binwidth = 50,
+                  alpha = 0.5)
+```
+
+    ## Warning: Removed 6 rows containing non-finite values (stat_bin).
+
+![](starwars_files/figure-gfm/num-cat-1.png)<!-- -->
 
 ### Pick two categorical variables and make a visualisation to visualise the relationship between the two variables. Along with your code and output, provide an interpretation of the visualisation.
 
+``` r
+ggplot(starwars, aes(x = gender,
+                     fill = sex)) + 
+  geom_bar(alpha = 0.5)
+```
+
+![](starwars_files/figure-gfm/cat-cat-1.png)<!-- -->
+
 ### Pick two numerical variables and two categorical variables and make a visualisation that incorportes all of them and provide an interpretation with your answer.
+
+``` r
+ggplot(starwars, aes(x = mass, y = height,
+                     color = hair_color)) + 
+  geom_point(alpha = 0.5) + 
+  facet_grid(~gender)
+```
+
+    ## Warning: Removed 28 rows containing missing values (geom_point).
+
+![](starwars_files/figure-gfm/multi-1.png)<!-- -->
